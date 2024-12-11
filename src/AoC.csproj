@@ -1,4 +1,9 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
+  <ItemGroup>
+    <None Update="day01Input.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
 
   <PropertyGroup>
     <TargetFramework>net9.0</TargetFramework>
