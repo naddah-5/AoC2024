@@ -1,7 +1,5 @@
 ﻿namespace AoC.Day01
 {
-    // No need to do all the extra stuff, we only need the diff between the 
-    // sum of the right and left lists.
     public class Day01
     {
         private List<int> _leftList;
