@@ -1,96 +1,77 @@
-﻿using System.Text;
-using System.Diagnostics.CodeAnalysis;
-
-namespace AoC.Day01
+﻿namespace AoC.Day01
 {
     // No need to do all the extra stuff, we only need the diff between the 
     // sum of the right and left lists.
     public class Day01
     {
-        public required int[][] _diffArr = new int[1000][];
-        public required int[][] DiffArr
-        {
-            get
-            {
-                return this._diffArr;
-            }
-            set
-            {
-                _diffArr = value;
-            }
-        }
-        private int _distDiff;
-        public int DistDiff
-        {
-            get
-            {
-                return this._distDiff;
-            }
-            set
-            {
-                _distDiff = value;
-            }
-        }
-
-        // Constructor
-        [SetsRequiredMembers]
+        private List<int> _leftList;
+        public List<int> LeftList {get; set;}
+        private List<int> _rightList;
+        public List<int> RightList {get; set;}
+        private Dictionary<int, int> _occur;
+        public Dictionary<int, int> Occur;
         public Day01()
         {
-            this._diffArr = new int[1000][];
-            DiffArr = new int[1000][];
-            this._distDiff = 0;
-            DistDiff = 0;
+            _leftList = new List<int>();
+            LeftList = _leftList;
+            _rightList = new List<int>();
+            RightList = _rightList;
+            _occur = new Dictionary<int, int>();
+            Occur = _occur;
         }
 
-        public void Read()
+        public void Read(string file)
         {
-            string fp = "day01Input.txt";
-            using (FileStream fs = File.Open(fp, FileMode.Open, FileAccess.Read, FileShare.Read))
-            {
-                byte[] b = new byte[1024];
-                UTF8Encoding temp = new UTF8Encoding(true);
-                int i = 0;
-                while (fs.Read(b, 0, b.Length) > 0)
-                {
-                    string p = temp.GetString(b);
-                    int[] ps = p.Split(' ')
-                        .Select(s => int.Parse(s))
-                        .ToArray();
-                    Console.WriteLine(ps);
-                    try
-                    {
-                        this.DiffArr[i] = new int[] { ps[0], ps[1] };
-                        Console.WriteLine(this.DiffArr[i]);
-                        i++;
-                    }
-                    catch (IndexOutOfRangeException)
-                    {
-                        Console.WriteLine("[WARNING] - received empty line");
-                    }
-                }
+            string[] input = [..File.ReadLines(file)];
+            foreach (var line in input) {
+                int[] Items = [..line.Split("   ").Select(int.Parse)];
+                this.LeftList.Add(Items[0]);
+                this.RightList.Add(Items[1]);
             }
         }
 
-        public void CalcDiff()
+        public int CalcPostion() 
         {
-            string fp = "day01Input.txt";
-            using (FileStream fs = File.Open(fp, FileMode.Open, FileAccess.Read, FileShare.Read))
-            {
-                byte[] b = new byte[1024];
-                UTF8Encoding temp = new UTF8Encoding(true);
+            int[] left = this.LeftList.Order()
+                .ToArray();
+            int[] right = this.RightList.Order()
+                .ToArray();
+            int res = left.Zip(right, (x, y) => Math.Abs(x - y)).Sum();
 
-                int leftSum = 0;
-                int rightSum = 0;
-                while (fs.Read(b, 0, b.Length) > 0)
-                {
-                    string p = temp.GetString(b);
-                    string[] ps = p.Split(' ');
-                    leftSum += Int32.Parse(ps[0]);
-                    rightSum += Int32.Parse(ps[1]);
-                }
-                this.DistDiff = (Math.Abs(leftSum - rightSum));
-            }
+            return res;
         }
 
+        public int SimilarityScore() 
+        {
+            int SimilarityScore = 0;
+            int[] left = this.LeftList
+                .Order()
+                .ToArray();
+            int[] right = this.RightList
+                .Order()
+                .ToArray();
+
+            foreach (int i in right) 
+            {
+                if (this.Occur.ContainsKey(i))
+                {
+                    this.Occur[i] += 1;
+                } else 
+                {
+                    this.Occur.Add(i, 1);
+                }
+            }
+
+            foreach (int i in left) 
+            {
+                int value;
+                if (this.Occur.TryGetValue(i, out value))
+                {
+                    SimilarityScore += value * i;
+                }
+            }
+            return SimilarityScore;
+        }
     }
+
 }
