@@ -1,6 +1,5 @@
 namespace AoC.Day02
 {
-<<<<<<< HEAD
     // Part one: how many lines are strictly increasing or decreasing. 
     // Min 1 max 3.
     public class Day02
@@ -11,19 +10,10 @@ namespace AoC.Day02
         {
             _input = new List<int[]>();
             Input = _input;
-=======
-    public class Day02
-    {
-
-        public Day02()
-        {
-
->>>>>>> ee7ec1b715b737150dfb6a923e4ea5cfa9d8978e
         }
 
         public void Read(string file)
         {
-<<<<<<< HEAD
             string[] input = [.. File.ReadLines(file)];
             foreach (var line in input)
             {
@@ -71,9 +61,5 @@ namespace AoC.Day02
         }
     }
 
-=======
 
-        }
-    }
->>>>>>> ee7ec1b715b737150dfb6a923e4ea5cfa9d8978e
 }
