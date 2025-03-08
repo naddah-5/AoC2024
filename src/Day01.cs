@@ -31,10 +31,8 @@
 
         public int CalcPostion()
         {
-            int[] left = this.LeftList.Order()
-                .ToArray();
-            int[] right = this.RightList.Order()
-                .ToArray();
+            int[] left = this.LeftList.Order().ToArray();
+            int[] right = this.RightList.Order().ToArray();
             int res = left.Zip(right, (x, y) => Math.Abs(x - y)).Sum();
 
             return res;
@@ -43,12 +41,8 @@
         public int SimilarityScore()
         {
             int SimilarityScore = 0;
-            int[] left = this.LeftList
-                .Order()
-                .ToArray();
-            int[] right = this.RightList
-                .Order()
-                .ToArray();
+            int[] left = this.LeftList.Order().ToArray();
+            int[] right = this.RightList.Order().ToArray();
 
             foreach (int i in right)
             {
