@@ -26,199 +26,188 @@ public class Day02Test
     }
 
     [Fact]
-    public void TestStrictIncValid0()
+    public void TestStrictDiffRate0()
     {
         int[] input = { 0, 1, 2 };
         Day02 day = new Day02();
-        Assert.True(day.StrictInc(input, 3));
+        Assert.True(day.StrictDiff(input, 3));
     }
 
-
     [Fact]
-    public void TestStrictIncValid1()
+    public void TestStrictDiffRate1()
     {
         int[] input = { 20, 21, 23 };
         Day02 day = new Day02();
-        Assert.True(day.StrictInc(input, 3));
+        Assert.True(day.StrictDiff(input, 3));
     }
 
     [Fact]
-    public void TestStrictIncValid2()
+    public void TestStrictDiffRate2()
     {
         int[] input = { 10, 11, 13 };
         Day02 day = new Day02();
-        Assert.True(day.StrictInc(input, 3));
+        Assert.True(day.StrictDiff(input, 3));
     }
 
     [Fact]
-    public void TestStrictIncValid3()
+    public void TestStrictDiffRate3()
     {
         int[] input = { -2, 0, 1 };
         Day02 day = new Day02();
-        Assert.True(day.StrictInc(input, 3));
+        Assert.True(day.StrictDiff(input, 3));
     }
 
     [Fact]
-    public void TestStrictIncValid4()
+    public void TestStrictDiffRate4()
     {
         int[] input = { 0, 3, 5 };
         Day02 day = new Day02();
-        Assert.True(day.StrictInc(input, 3));
+        Assert.True(day.StrictDiff(input, 3));
     }
 
     [Fact]
-    public void TestStrictIncValid5()
+    public void TestStrictDiffRate5()
     {
         int[] input = { 3, 4, 5 };
         Day02 day = new Day02();
-        Assert.True(day.StrictInc(input, 3));
+        Assert.True(day.StrictDiff(input, 3));
     }
 
     [Fact]
-    public void TestStrictIncInvalid0()
+    public void TestStrictDiffRate6()
     {
         int[] input = { 0, 1, 5 };
         Day02 day = new Day02();
-        Assert.False(day.StrictInc(input, 3));
+        Assert.False(day.StrictDiff(input, 3));
     }
 
     [Fact]
-    public void TestStrictIncInvalid1()
+    public void TestStrictDiffRate7()
     {
         int[] input = { 0, 4, 5 };
         Day02 day = new Day02();
-        Assert.False(day.StrictInc(input, 3));
+        Assert.False(day.StrictDiff(input, 3));
     }
 
     [Fact]
-    public void TestStrictIncInvalid2()
+    public void TestStrictDiffRate8()
     {
         int[] input = { 0, 2, 2 };
         Day02 day = new Day02();
-        Assert.False(day.StrictInc(input, 3));
+        Assert.False(day.StrictDiff(input, 3));
     }
 
     [Fact]
-    public void TestStrictIncInvalid3()
+    public void TestStrictDiffRate9()
     {
         int[] input = { -2, 10, 2 };
         Day02 day = new Day02();
-        Assert.False(day.StrictInc(input, 3));
+        Assert.False(day.StrictDiff(input, 3));
     }
 
     [Fact]
-    public void TestStrictIncInvalid4()
+    public void TestStrictDiffRate10()
     {
         int[] input = { 10, -11, 13 };
         Day02 day = new Day02();
-        Assert.False(day.StrictInc(input, 3));
-
+        Assert.False(day.StrictDiff(input, 3));
     }
 
     [Fact]
-    public void TestStrictIncInvalid5()
+    public void TestStrictDiffRate11()
     {
         int[] input = { 20, 21, 21 };
         Day02 day = new Day02();
-        Assert.False(day.StrictInc(input, 3));
+        Assert.False(day.StrictDiff(input, 3));
     }
 
     [Fact]
-    public void TestStrictDecValid0()
+    public void TestStrictDiffRate12()
     {
         int[] input = { 3, 2, 1 };
         Day02 day = new Day02();
-        Assert.True(day.StrictDec(input, 3));
+        Assert.True(day.StrictDiff(input, 3));
     }
 
     [Fact]
-    public void TestStrictDecValid1()
+    public void TestStrictDiffRate13()
     {
         int[] input = { -1, -2, -3 };
         Day02 day = new Day02();
-        Assert.True(day.StrictDec(input, 3));
+        Assert.True(day.StrictDiff(input, 3));
     }
 
     [Fact]
-    public void TestStrictDecValid2()
+    public void TestStrictDiffRate14()
     {
         int[] input = { 5, 2, 0 };
         Day02 day = new Day02();
-        Assert.True(day.StrictDec(input, 3));
+        Assert.True(day.StrictDiff(input, 3));
     }
 
     [Fact]
-    public void TestStrictDecValid3()
+    public void TestStrictDiffRate15()
     {
         int[] input = { 3, 0, -1 };
         Day02 day = new Day02();
-        Assert.True(day.StrictDec(input, 3));
+        Assert.True(day.StrictDiff(input, 3));
     }
 
     [Fact]
-    public void TestStrictDecValid4()
+    public void TestStrictDiffRate16()
     {
         int[] input = { 3, 2, -1 };
         Day02 day = new Day02();
-        Assert.True(day.StrictDec(input, 3));
+        Assert.True(day.StrictDiff(input, 3));
     }
 
     [Fact]
-    public void TestStrictDecValid5()
+    public void TestStrictDiffRate17()
     {
         int[] input = { 3, 0, -3 };
         Day02 day = new Day02();
-        Assert.True(day.StrictDec(input, 3));
+        Assert.True(day.StrictDiff(input, 3));
     }
 
     [Fact]
-    public void TestStrictDecInvalid0()
-    {
-        int[] input = { 1, 2, 3 };
-        Day02 day = new Day02();
-        Assert.False(day.StrictDec(input, 3));
-    }
-
-    [Fact]
-    public void TestStrictDecInvalid1()
+    public void TestStrictDiffRate18()
     {
         int[] input = { 3, -2, -1 };
         Day02 day = new Day02();
-        Assert.False(day.StrictDec(input, 3));
+        Assert.False(day.StrictDiff(input, 3));
     }
 
     [Fact]
-    public void TestStrictDecInvalid2()
+    public void TestStrictDiffRate19()
     {
         int[] input = { 5, 1, 0 };
         Day02 day = new Day02();
-        Assert.False(day.StrictDec(input, 3));
+        Assert.False(day.StrictDiff(input, 3));
     }
 
     [Fact]
-    public void TestStrictDecInvalid3()
+    public void TestStrictDiffRate20()
     {
         int[] input = { 3, -1, -2 };
         Day02 day = new Day02();
-        Assert.False(day.StrictDec(input, 3));
+        Assert.False(day.StrictDiff(input, 3));
     }
 
     [Fact]
-    public void TestStrictDecInvalid4()
+    public void TestStrictDiffRate21()
     {
         int[] input = { 3, 2, -2 };
         Day02 day = new Day02();
-        Assert.False(day.StrictDec(input, 3));
+        Assert.False(day.StrictDiff(input, 3));
     }
 
     [Fact]
-    public void TestStrictDecInvalid5()
+    public void TestStrictDiffRate22()
     {
         int[] input = { 4, 0, -4 };
         Day02 day = new Day02();
-        Assert.False(day.StrictDec(input, 3));
+        Assert.False(day.StrictDiff(input, 3));
     }
-
 }
 
 

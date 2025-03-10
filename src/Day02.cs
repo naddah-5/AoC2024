@@ -23,39 +23,26 @@ namespace AoC.Day02
         }
 
         // Returns true if an array is strictly increasing or decrasing with at most 'max' difference.
-        public bool StrictDiff(int[] arr, int max)
+        public bool StrictDiff(int[] input, int maxDiff)
         {
-
-
-            return true;
-        }
-
-        public bool StrictInc(int[] arr, int max)
-        {
-            for (int i = 0; i < arr.Length - 1; i++)
+            if (input.Length < 2)
             {
-                bool increasing = arr[i] > arr[i + 1];
-                bool incLimit = Math.Abs(arr[i] - arr[i + 1]) > 3;
-                bool same = arr[i] == arr[i + 1];
-                if (increasing || incLimit || same)
-                {
-                    return false;
-                }
+                return false;
             }
-            return true;
-        }
-
-        public bool StrictDec(int[] arr, int max)
-        {
-            for (int i = 0; i < arr.Length - 1; i++)
+            bool direction = input[0] - input[1] < 0;
+            for (int i = 0; i < input.Length - 1; i++)
             {
-                bool increasing = arr[i] < arr[i + 1];
-                bool incLimit = Math.Abs(arr[i] - arr[i + 1]) > 3;
-                bool same = arr[i] == arr[i + 1];
-                if (increasing || incLimit || same)
+                // Check for the two safety requirements:
+                // Strictly increasing or decreasing, checked by strict and neq.
+                bool strict = (input[i] - input[i + 1] < 0) != direction;
+                bool neq = input[i] == input[i + 1];
+                // Difference limit, checked by diffLimit.
+                bool diffLimit = Math.Abs(input[i] - input[i + 1]) > maxDiff;
+                if (strict || diffLimit || neq)
                 {
                     return false;
                 }
+
             }
             return true;
         }
