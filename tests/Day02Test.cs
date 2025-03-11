@@ -8,11 +8,11 @@ public class Day02Test
     public void VerifyReading()
     {
         bool verbose = false;
-        Console.WriteLine("entering day 2");
         Day02 day = new Day02();
         day.Read("Day02TestInput.txt");
         if (verbose)
         {
+            Console.WriteLine("entering day 2");
             foreach (int[] arr in day.Input)
             {
                 foreach (int data in arr)
@@ -23,6 +23,52 @@ public class Day02Test
                 Console.WriteLine();
             }
         }
+    }
+
+    [Fact]
+    public void ComputePartOneTest()
+    {
+        bool output = false;
+        if (!output)
+        {
+            return;
+        }
+        Day02 day = new Day02();
+        day.Read("Day02TestInput.txt");
+        Console.WriteLine("test data results:");
+        foreach (int[] level in day.Input)
+        {
+            var safety = day.StrictDiff(level, 3);
+            Console.WriteLine(safety);
+        }
+    }
+
+    [Fact]
+    public void ComputeDay02PartOne()
+    {
+        bool output = false;
+        if (!output)
+        {
+            return;
+        }
+        var day = new Day02();
+        day.Read("Day02Input.txt");
+        var res = day.SafeLevels(3, false);
+        Console.WriteLine("Day 02 Part One:\nThere are {0} safe levels", res);
+    }
+
+    [Fact]
+    public void ComputePartTwoTest()
+    {
+        bool output = true;
+        if (!output)
+        {
+            return;
+        }
+        var day = new Day02();
+        day.Read("Day02TestInput.txt");
+        var res = day.SafeLevels(3, true);
+        Console.WriteLine("Day 02 Part Two:\nThere are {0} safe levels", res);
     }
 
     [Fact]
@@ -208,6 +254,47 @@ public class Day02Test
         Day02 day = new Day02();
         Assert.False(day.StrictDiff(input, 3));
     }
-}
 
+    [Fact]
+    public void TestReduceInput0()
+    {
+        int[] input = { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 };
+        var day = new Day02();
+        var res = day.ReduceInput(input, 3, input.Length - 1);
+        var print = "TestReduceInput0\n";
+        foreach (var i in res)
+        {
+            print += i + ", ";
+        }
+        Console.WriteLine(print);
+    }
+    [Fact]
+    public void TestReduceInput1()
+    {
+        int[] input = { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 };
+        var day = new Day02();
+        var res = day.ReduceInput(input, 0, input.Length - 1);
+        var print = "TestReduceInput1\n";
+        foreach (var i in res)
+        {
+            print += i + ", ";
+        }
+        Console.WriteLine(print);
+    }
+    [Fact]
+    public void TestReduceInput2()
+    {
+        int[] input = { 0, 1, 2, 7, 8, 9, 3, 4, 5, 6, };
+        var day = new Day02();
+        var res = day.ReduceInput(input, 9, input.Length - 1);
+        var print = "TestReduceInput2\n";
+        foreach (var i in res)
+        {
+            print += i + ", ";
+        }
+        Console.WriteLine(print);
+    }
+
+
+}
 
