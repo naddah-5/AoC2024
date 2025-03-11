@@ -6,13 +6,17 @@ namespace AoC.Day02
     {
         private int _safetyMargin;
         public int SafetyMargin { get; set; }
-        private List<int[]> _input;
-        public List<int[]> Input { get; set; }
+        private int _currentMargin;
+        public int CurrentMargin { get; set; }
+        private List<List<int>> _input;
+        public List<List<int>> Input { get; set; }
         public Day02()
         {
             _safetyMargin = 1;
             SafetyMargin = _safetyMargin;
-            _input = new List<int[]>();
+            _currentMargin = _safetyMargin;
+            CurrentMargin = _safetyMargin;
+            _input = new List<List<int>>();
             Input = _input;
         }
 
@@ -21,20 +25,20 @@ namespace AoC.Day02
             string[] input = [.. File.ReadLines(file)];
             foreach (var line in input)
             {
-                int[] Items = [.. line.Split(' ').Select(int.Parse)];
+                List<int> Items = [.. line.Split(' ').Select(int.Parse)];
                 this.Input.Add(Items);
             }
         }
 
         // Returns true if an array is strictly increasing or decrasing with at most 'max' difference.
-        public bool StrictDiff(int[] input, int maxDiff)
+        public bool StrictDiff(List<int> input, int maxDiff)
         {
-            if (input.Length < 2)
+            if (input.Count < 2)
             {
                 return false;
             }
             bool direction = input[0] - input[1] < 0;
-            for (int i = 0; i < input.Length - 1; i++)
+            for (int i = 0; i < input.Count - 1; i++)
             {
                 // Check for the two safety requirements:
                 // Strictly increasing or decreasing, checked by strict and neq.
@@ -51,9 +55,9 @@ namespace AoC.Day02
             return true;
         }
 
-        public bool StrictDampDiff(int[] input, int maxDiff)
+        public bool StrictDampDiff(List<int> input, int maxDiff)
         {
-            if (input.Length < 3)
+            if (input.Count < 3)
             {
                 return false;
             }
@@ -61,9 +65,10 @@ namespace AoC.Day02
             bool direction1 = input[1] - input[2] < 0;
             bool direction2 = input[2] - input[3] < 0;
 
+            // Sets the direction by consensus of the first four entries.
             bool direction = (direction0 && direction1) || (direction0 && direction2);
 
-            for (int i = 0; i < input.Length - 1; i++)
+            for (int i = 0; i < input.Count - 1; i++)
             {
                 // Check for the two safety requirements:
                 // Strictly increasing or decreasing, checked by strict and neq.
@@ -73,16 +78,26 @@ namespace AoC.Day02
                 bool diffLimit = Math.Abs(input[i] - input[i + 1]) > maxDiff;
                 if (strict || diffLimit || neq)
                 {
-                    this.SafetyMargin--;
-                    if (this.SafetyMargin <= 0)
+                    if (this.CurrentMargin <= 0)
                     {
                         return false;
                     }
                     else
                     {
-                        var reduced = this.ReduceInput(input, i, input.Length - 1);
-                        Console.WriteLine(reduced);
-                        this.StrictDampDiff(reduced, maxDiff);
+                        this.CurrentMargin--;
+                        for (int j = 0; j < input.Count; j++)
+                        {
+                            List<int> subInput = input.ToList();
+                            subInput.RemoveAt(j);
+                            bool subRes = this.StrictDampDiff(subInput, maxDiff);
+                            if (subRes)
+                            {
+                                return true;
+                            }
+                        }
+                        if (this.CurrentMargin <= 0) {
+                            return false;
+                        }
                     }
                 }
 
@@ -91,32 +106,12 @@ namespace AoC.Day02
 
         }
 
-        public int[] ReduceInput(int[] input, int removeIndex, int length)
-        {
-            var reducedMargin = new int[length];
-            for (int i = 0; i < input.Length; i++)
-            {
-                if (i == removeIndex)
-                {
-                    continue;
-                }
-                else if (i > removeIndex)
-                {
-                    reducedMargin[i - 1] = input[i];
-                }
-                else if (i < removeIndex)
-                {
-                    reducedMargin[i] = input[i];
-                }
-            }
-            return reducedMargin;
-        }
-
         public int SafeLevels(int maxDiff, bool dampener)
         {
             int safeLevels = 0;
-            foreach (int[] level in this.Input)
+            foreach (var level in this.Input)
             {
+                this.CurrentMargin = this.SafetyMargin;
                 bool safe;
                 if (dampener)
                 {
