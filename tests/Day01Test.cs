@@ -9,7 +9,7 @@ public class Day01Test
     {
         bool print = false;
         Day01 day = new Day01();
-        day.Read("testInput.txt");
+        day.Read("inputData/testInput.txt");
         int[] left = day.LeftList.ToArray();
         int[] right = day.RightList.ToArray();
         if (print)
@@ -28,7 +28,7 @@ public class Day01Test
     {
         bool print = false;
         Day01 day = new Day01();
-        day.Read("day01Input.txt");
+        day.Read("inputData/day01Input.txt");
         int res = day.CalcPostion();
         if (print)
         {
@@ -41,7 +41,7 @@ public class Day01Test
     {
         bool print = false;
         Day01 day = new Day01();
-        day.Read("testInput.txt");
+        day.Read("inputData/testInput.txt");
         int res = day.SimilarityScore();
         if (print)
         {
@@ -55,7 +55,7 @@ public class Day01Test
     {
         bool print = false;
         Day01 day = new Day01();
-        day.Read("day01Input.txt");
+        day.Read("inputData/day01Input.txt");
         int res = day.SimilarityScore();
         if (print)
         {

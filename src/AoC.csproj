@@ -1,21 +1,36 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <ItemGroup>
-    <None Update="testInput.txt">
+    <None Update="inputData/testInput.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="day01Input.txt">
+    <None Update="inputData/day01Input.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="day02Input.txt">
+    <None Update="inputData/day02Input.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="day02TestInput.txt">
+    <None Update="inputData/day02TestInput.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="day02PartTwoInput.txt">
+    <None Update="inputData/day02PartTwoInput.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-
+    <None Update="inputData/day03TestInput.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="inputData/day03TestInputTwo.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="inputData/day03Input.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="inputData/day03Custom.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="inputData/day03Custom2.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+ 
 
   </ItemGroup>
 

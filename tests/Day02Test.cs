@@ -9,7 +9,7 @@ public class Day02Test
     {
         bool verbose = false;
         Day02 day = new Day02();
-        day.Read("Day02TestInput.txt");
+        day.Read("inputData/Day02TestInput.txt");
         if (verbose)
         {
             Console.WriteLine("entering day 2");
@@ -34,7 +34,7 @@ public class Day02Test
             return;
         }
         Day02 day = new Day02();
-        day.Read("Day02TestInput.txt");
+        day.Read("inputData/Day02TestInput.txt");
         Console.WriteLine("test data results:");
         foreach (var level in day.Input)
         {
@@ -52,7 +52,7 @@ public class Day02Test
             return;
         }
         var day = new Day02();
-        day.Read("Day02Input.txt");
+        day.Read("inputData/Day02Input.txt");
         var res = day.SafeLevels(3, false);
         Console.WriteLine("Day 02 Part One:\nThere are {0} safe levels", res);
     }
@@ -66,7 +66,7 @@ public class Day02Test
             return;
         }
         var day = new Day02();
-        day.Read("Day02TestInput.txt");
+        day.Read("inputData/Day02TestInput.txt");
         var res = day.SafeLevels(3, true);
         Console.WriteLine("Day 02 Part Two Test:\nThere are {0} safe levels", res);
     }
@@ -74,13 +74,13 @@ public class Day02Test
     [Fact]
     public void ComputeDay02PartTwo()
     {
-        bool output = true;
+        bool output = false;
         if (!output)
         {
             return;
         }
         var day = new Day02();
-        day.Read("Day02PartTwoInput.txt");
+        day.Read("inputData/Day02PartTwoInput.txt");
         var res = day.SafeLevels(3, true);
         Console.WriteLine("Day 02 Part Two:\nThere are {0} safe levels", res);
     }
