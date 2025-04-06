@@ -47,7 +47,7 @@ class Day04
             }
             // Move positioning along.
             wordPos += wordDir;
-            inputPos.Zip(inputDir, (x, y) => x + y);
+            inputPos = inputPos.Zip(inputDir, (x, y) => x + y).ToArray();
             // Completion check.
             switch (wordDir)
             {
