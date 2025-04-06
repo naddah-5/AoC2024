@@ -17,39 +17,46 @@ class Day04
         TargetWords = _targetWords;
     }
 
-    public void Read(string fileName)
-    {
-        Input = File.ReadLines(fileName)
+    public void Read(string fileName) => Input = File.ReadLines(fileName)
             .ToArray();
-    }
 
     // Follows the word along a direction both in the word and the matrix.
-    // matrixDir is the travel direction given in [x, y] coordinates.
+    // inputDir is the travel direction given in [x, y] coordinates.
     // wordDir is the travel direction in the word given as  1 or -1.
     // Returns true if the whole word is found and false if it is not.
-    public bool Trace(string target, int wordPos, int wordDir, int[] matrixPos, int[] matrixDir)
+    public bool Trace(string target, int wordPos, int wordDir, int[] inputPos, int[] inputDir)
     {
         if (Input == null)
         {
-            throw new Exception("no input data");
+            return false;
         }
-        // Bounds checking for the target word and the input size.
-        while (wordPos < target.Length && wordPos >= 0 && wordPos < Input[matrixPos[0]].Length)
+        // Trace input matrix for the target word at given position.
+        while (
+                // Is the x-coordinate within the row length.
+                inputPos[0] >= 0 && inputPos[0] < Input[inputPos[0]].Length &&
+                // Is the y-coordinate within the column limit.
+                inputPos[1] >= 0 && inputPos[1] < Input.Length &&
+                // Is the word slider within bounds.
+                wordPos < target.Length && wordPos >= 0
+                )
         {
-            // Checks that the current character in target word matches the current character in the input.
-            if (target[wordPos] != Input[matrixPos[0]][matrixPos[1]])
+            // Compare current position with the next character.
+            if (target[wordPos] != Input[inputPos[0]][inputPos[1]])
             {
                 return false;
             }
+            // Move positioning along.
             wordPos += wordDir;
-            matrixPos.Zip(matrixDir, (x, y) => x + y);
-            if (wordDir < 0 && wordPos < 0)
+            inputPos.Zip(inputDir, (x, y) => x + y);
+            // Completion check.
+            switch (wordDir)
             {
-                return true;
-            }
-            else if (wordDir > 0 && wordPos == target.Length)
-            {
-                return true;
+                // Backwards direction.
+                case < 0 when wordPos < 0:
+                    return true;
+                // Forwards direction.
+                case > 0 when wordPos == target.Length:
+                    return true;
             }
         }
         return false;
